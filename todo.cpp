@@ -5,53 +5,90 @@
 */
 
 #include <iostream>
+#include <fstream>
 #include <string>
-#include <stdlib.h>
 using namespace std;
+
+void display(string[], int total_tasks);
+void clearscreen();
+void write(string[], int total_tasks);
 
 int main()
 {
-    // it saves
 	  int ch;
-    string task[20];
-    int flag = 0;
-	  while(true)
+          int counter;
+          string tasks[20];
+          int deletion_flag;
+          int total_tasks = 0;
 
-    {
-        cout<<"------------------------------------------------------------------"<<endl;
-		    cout<<"Choose your option:"<<endl<<"1) Enter new task."<<endl<<"2) Delete old task."<<endl<<"3) Exit."<<endl;
-        cout<<"------------------------------------------------------------------"<<endl;
+          while (true) {
+            cout << "----------------------------------------------------------"
+                    "--------"
+                 << endl;
+            cout << "Choose your option:" << endl
+                 << "1) Enter new tasks." << endl
+                 << "2) Delete old tasks." << endl
+                 << "3) Exit." << endl;
+            cout << "----------------------------------------------------------"
+                    "--------"
+                 << endl;
 
-        cin>>ch;
+            cin >> ch;
 
-        // special character which clears the screen
-        cout << "\033[2J\033[1;1H";
+            clearscreen();
 
-        if( ch == 1 )
-        {
-            cout<<"Enter task:"<<endl;
-            cin.ignore();
-            getline(cin,task[flag]);
-            flag++;
-         }
+            if (ch == 1) {
+              cout << "Enter tasks:" << endl;
+              cin.ignore();
+              getline(cin, tasks[total_tasks]);
+              total_tasks++;
+              clearscreen();
+            }
 
-         else if( ch == 2)
-         {
-//todo
-         }
+            else if (ch == 2) {
+              cout << "Choose the number of data to be deleted" << endl;
+              display(tasks, total_tasks);
+              cout << ":";
+              cin >> deletion_flag;
+              deletion_flag--;
+              for (int i = deletion_flag; i < total_tasks; i++) {
+                tasks[i] = tasks[i + 1];
+              }
+              total_tasks--;
+              clearscreen();
+            }
 
-         else if( ch == 3)
-         {
-           cout<<"Thanks for using Todo-List"<<endl;
-           exit(0);
-         }
-    // special characters which clears the screen
-    cout << "\033[2J\033[1;1H";
+            else if (ch == 3) {
+							write(tasks, total_tasks);
+              cout << "Thanks for using Todo-List" << endl;
+              exit(0);
+            }
 
-    for( int i = 0; i< flag; i++)
-    {
-      cout<<i+1<<")";
-      cout<<task[i]<<endl;
-    }
+            display(tasks, total_tasks);
+        }
+}
+
+void display(string tasks[], int total_tasks) {
+  for (int i = 0; i < total_tasks; i++) {
+    cout << i + 1 << ")";
+    cout << tasks[i] << endl;
+  }
+}
+
+void clearscreen() {
+  // special characters which clears the screen
+  cout << "\033[2J\033[1;1H";
+}
+
+void write( string tasks[], int total_tasks)
+{
+	ofstream file;
+	file.open("tasks.txt");
+	file<<"Total Tasks: "<<total_tasks<<endl;
+	for ( int i = 0; i < total_tasks; i++)
+	{
+		file<<i+1<<") ";
+		file<<tasks[i]<<endl;
 	}
+	file.close();
 }

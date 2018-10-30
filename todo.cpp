@@ -15,54 +15,54 @@ void write(string[], int total_tasks);
 
 int main()
 {
-	  int ch, deletion_flag, total_tasks = 0;
-    string tasks[20];
+  int ch, deletion_flag, total_tasks = 0;
+  string tasks[20];
 
-          while (true) {
-            cout << "----------------------------------------------------------"
-                    "--------"
-                 << endl;
-            cout << "Choose your option:" << endl
-                 << "1) Enter new tasks." << endl
-                 << "2) Delete old tasks." << endl
-                 << "3) Exit." << endl;
-            cout << "----------------------------------------------------------"
-                    "--------"
-                 << endl;
+  while (true) {
+    cout << "----------------------------------------------------------"
+            "--------"
+         << endl;
+    cout << "Choose your option:" << endl
+         << "1) Enter new tasks." << endl
+         << "2) Delete old tasks." << endl
+         << "3) Exit." << endl;
+    cout << "----------------------------------------------------------"
+            "--------"
+         << endl;
 
-            cin >> ch;
+    cin >> ch;
 
-            clearscreen();
+    clearscreen();
 
-            if (ch == 1) {
-              cout << "Enter tasks:" << endl;
-              cin.ignore();
-              getline(cin, tasks[total_tasks]);
-              total_tasks++;
-              clearscreen();
-            }
+    if (ch == 1) {
+      cout << "Enter tasks:" << endl;
+      cin.ignore();
+      getline(cin, tasks[total_tasks]);
+      total_tasks++;
+      clearscreen();
+    }
 
-            else if (ch == 2) {
-              cout << "Choose the number of data to be deleted" << endl;
-              display(tasks, total_tasks);
-              cout << ":";
-              cin >> deletion_flag;
-              deletion_flag--;
-              for (int i = deletion_flag; i < total_tasks; i++) {
-                tasks[i] = tasks[i + 1];
-              }
-              total_tasks--;
-              clearscreen();
-            }
+    else if (ch == 2) {
+      cout << "Choose the number of data to be deleted" << endl;
+      display(tasks, total_tasks);
+      cout << ":";
+      cin >> deletion_flag;
+      deletion_flag--;
+      for (int i = deletion_flag; i < total_tasks; i++) {
+        tasks[i] = tasks[i + 1];
+      }
+      total_tasks--;
+      clearscreen();
+    }
 
-            else if (ch == 3) {
-              write(tasks, total_tasks);
-              cout << "Thanks for using Todo-List" << endl;
-              exit(0);
-            }
+    else if (ch == 3) {
+      write(tasks, total_tasks);
+      cout << "Thanks for using Todo-List" << endl;
+      exit(0);
+    }
 
-            display(tasks, total_tasks);
-          }
+    display(tasks, total_tasks);
+  }
 }
 
 void display(string tasks[], int total_tasks) {

@@ -4,8 +4,8 @@
 **   Submitted to: Mr. Tejpal Sir
 */
 
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -15,11 +15,8 @@ void write(string[], int total_tasks);
 
 int main()
 {
-	  int ch;
-          int counter;
-          string tasks[20];
-          int deletion_flag;
-          int total_tasks = 0;
+	  int ch, deletion_flag, total_tasks = 0;
+    string tasks[20];
 
           while (true) {
             cout << "----------------------------------------------------------"
@@ -59,13 +56,13 @@ int main()
             }
 
             else if (ch == 3) {
-							write(tasks, total_tasks);
+              write(tasks, total_tasks);
               cout << "Thanks for using Todo-List" << endl;
               exit(0);
             }
 
             display(tasks, total_tasks);
-        }
+          }
 }
 
 void display(string tasks[], int total_tasks) {
@@ -80,15 +77,13 @@ void clearscreen() {
   cout << "\033[2J\033[1;1H";
 }
 
-void write( string tasks[], int total_tasks)
-{
-	ofstream file;
-	file.open("tasks.txt");
-	file<<"Total Tasks: "<<total_tasks<<endl;
-	for ( int i = 0; i < total_tasks; i++)
-	{
-		file<<i+1<<") ";
-		file<<tasks[i]<<endl;
-	}
-	file.close();
+void write(string tasks[], int total_tasks) {
+  ofstream file;
+  file.open("tasks.txt");
+  file << "Total Tasks: " << total_tasks << endl;
+  for (int i = 0; i < total_tasks; i++) {
+    file << i + 1 << ") ";
+    file << tasks[i] << endl;
+  }
+  file.close();
 }

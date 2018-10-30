@@ -15,8 +15,24 @@ void write(string tasks[], int total_tasks);
 
 int main()
 {
-  int ch, deletion_flag, total_tasks = 0;
+  int ch, total_tasks = 0;
   string tasks[20];
+
+  ifstream infile;
+  infile.open("tasks.txt");
+  if (infile) {
+    string data;
+    for (int i = 0; i < 2; i++) {
+      infile >> data;
+    }
+    infile >> total_tasks;
+
+    for (int i = 0; i < total_tasks; i++) {
+      infile >> data;
+      infile >> tasks[i];
+    }
+    display(tasks, total_tasks);
+  }
 
   while (true) {
     cout << "----------------------------------------------------------"
@@ -44,6 +60,7 @@ int main()
 
     else if (ch == 2) {
       cout << "Choose the number of data to be deleted" << endl;
+      int deletion_flag;
       display(tasks, total_tasks);
       cout << ":";
       cin >> deletion_flag;
@@ -78,12 +95,12 @@ void clearscreen() {
 }
 
 void write(string tasks[], int total_tasks) {
-  ofstream file;
-  file.open("tasks.txt");
-  file << "Total Tasks: " << total_tasks << endl;
+  ofstream outfile;
+  outfile.open("tasks.txt");
+  outfile << "Total Tasks: " << total_tasks << endl;
   for (int i = 0; i < total_tasks; i++) {
-    file << i + 1 << ") ";
-    file << tasks[i] << endl;
+    outfile << i + 1 << ") ";
+    outfile << tasks[i] << endl;
   }
-  file.close();
+  outfile.close();
 }

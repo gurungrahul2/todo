@@ -9,9 +9,9 @@
 #include <string>
 using namespace std;
 
-void display(string[], int total_tasks);
+void display(string tasks[], int total_tasks);
 void clearscreen();
-void write(string[], int total_tasks);
+void write(string tasks[], int total_tasks);
 
 int main()
 {

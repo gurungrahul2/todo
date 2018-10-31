@@ -31,6 +31,7 @@ int main()
       infile >> data;
       infile >> tasks[i];
     }
+		clearscreen();
     display(tasks, total_tasks);
   }
 
@@ -90,8 +91,8 @@ void display(string tasks[], int total_tasks) {
 }
 
 void clearscreen() {
-  // special characters which clears the screen
-  cout << "\033[2J\033[1;1H";
+  for (int i = 0; i<100; i++)
+  cout<<endl;
 }
 
 void write(string tasks[], int total_tasks) {

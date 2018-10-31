@@ -15,7 +15,7 @@ void write(string tasks[], int total_tasks);
 
 int main()
 {
-  int ch, total_tasks = 0;
+  int ch, total_tasks = 0, invalid_flag = 0;
   string tasks[20], temp;
 
   ifstream infile;
@@ -50,6 +50,7 @@ int main()
   }
 
   while (true) {
+
     cout << "----------------------------------------------------------"
             "--------"
          << endl;
@@ -60,6 +61,12 @@ int main()
     cout << "----------------------------------------------------------"
             "--------"
          << endl;
+
+    if ( invalid_flag == 1 )
+    {
+      cout << "Invalid Input." << endl;
+      invalid_flag = 0;
+    }
 
     cin >> ch;
 
@@ -93,7 +100,12 @@ int main()
       exit(0);
     }
 
+    else {
+      invalid_flag = 1;
+    }
+
     display(tasks, total_tasks);
+
   }
 }
 

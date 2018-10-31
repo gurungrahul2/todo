@@ -31,7 +31,7 @@ int main()
       infile >> data;
       infile >> tasks[i];
     }
-		clearscreen();
+    clearscreen();
     display(tasks, total_tasks);
   }
 
@@ -83,6 +83,7 @@ int main()
   }
 }
 
+/* this function displays the tasks */
 void display(string tasks[], int total_tasks) {
   for (int i = 0; i < total_tasks; i++) {
     cout << i + 1 << ")";
@@ -90,11 +91,13 @@ void display(string tasks[], int total_tasks) {
   }
 }
 
+/* this function clears the screen to the bottom */
 void clearscreen() {
-  for (int i = 0; i<100; i++)
-  cout<<endl;
+  for (int i = 0; i < 100; i++)
+    cout << endl;
 }
 
+/* this function writes our tasks to a separate .txt file */
 void write(string tasks[], int total_tasks) {
   ofstream outfile;
   outfile.open("tasks.txt");

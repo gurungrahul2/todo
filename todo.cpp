@@ -16,21 +16,35 @@ void write(string tasks[], int total_tasks);
 int main()
 {
   int ch, total_tasks = 0;
-  string tasks[20];
+  string tasks[20], temp;
 
   ifstream infile;
   infile.open("tasks.txt");
   if (infile) {
     string data;
+
+    // this is used to import total_tasks from file
     for (int i = 0; i < 2; i++) {
       infile >> data;
     }
     infile >> total_tasks;
+    cout << total_tasks;
 
+    // importing each tasks into a single index
     for (int i = 0; i < total_tasks; i++) {
       infile >> data;
-      infile >> tasks[i];
+      infile >> data;
+      infile >> data;
+      infile >> temp;
+
+      while (temp != "$$") {
+        data = data + " " + temp;
+        infile >> temp;
+      }
+
+      tasks[i] = data;
     }
+
     clearscreen();
     display(tasks, total_tasks);
   }
@@ -104,7 +118,10 @@ void write(string tasks[], int total_tasks) {
   outfile << "Total Tasks: " << total_tasks << endl;
   for (int i = 0; i < total_tasks; i++) {
     outfile << i + 1 << ") ";
-    outfile << tasks[i] << endl;
+    outfile << "$$ ";
+    outfile << tasks[i];
+    outfile << " $$";
+    outfile << endl;
   }
   outfile.close();
 }

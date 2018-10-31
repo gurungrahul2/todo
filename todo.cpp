@@ -10,8 +10,9 @@
 using namespace std;
 
 void display(string tasks[], int total_tasks);
-void clearscreen();
+void clearscreen(int n);
 void write(string tasks[], int total_tasks);
+void welcome();
 
 int main()
 {
@@ -45,7 +46,9 @@ int main()
       tasks[i] = data;
     }
 
-    clearscreen();
+    clearscreen(100);
+    welcome();
+    clearscreen(5);
     display(tasks, total_tasks);
   }
 
@@ -62,22 +65,21 @@ int main()
             "--------"
          << endl;
 
-    if ( invalid_flag == 1 )
-    {
+    if (invalid_flag == 1) {
       cout << "Invalid Input." << endl;
       invalid_flag = 0;
     }
 
     cin >> ch;
 
-    clearscreen();
+    clearscreen(100);
 
     if (ch == 1) {
       cout << "Enter tasks:" << endl;
       cin.ignore();
       getline(cin, tasks[total_tasks]);
       total_tasks++;
-      clearscreen();
+      clearscreen(100);
     }
 
     else if (ch == 2) {
@@ -91,7 +93,7 @@ int main()
         tasks[i] = tasks[i + 1];
       }
       total_tasks--;
-      clearscreen();
+      clearscreen(100);
     }
 
     else if (ch == 3) {
@@ -105,7 +107,6 @@ int main()
     }
 
     display(tasks, total_tasks);
-
   }
 }
 
@@ -118,8 +119,8 @@ void display(string tasks[], int total_tasks) {
 }
 
 /* this function clears the screen to the bottom */
-void clearscreen() {
-  for (int i = 0; i < 100; i++)
+void clearscreen(int n) {
+  for (int i = 0; i < n; i++)
     cout << endl;
 }
 
@@ -136,4 +137,9 @@ void write(string tasks[], int total_tasks) {
     outfile << endl;
   }
   outfile.close();
+}
+
+void welcome()
+{
+  cout<<"Welcome to To-Do Planner: A task planner which works on the shoulders of arrays and fstream.";
 }
